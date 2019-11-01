@@ -124,7 +124,33 @@ features[:5]
 
 '''
 ---
+### Select the model  
+A model is a relationship between the features and the label.
+
+We'll use a neural network to solve the Iris classification problem.   
+Neural networks can find complex relationships between features and the label. 
+
+It is a highly-structured graph, organized into one or more hidden layers. 
+Each hidden layer consists of one or more neurons. 
+There are several categories of neural networks and this program uses a dense, 
+or fully-connected neural network: the neurons in one layer receive 
+input connections from every neuron in the previous layer.
+'''
+image_url = 'https://www.tensorflow.org/images/custom_estimators/full_network.png'
+st.image(image_url, use_column_width=True)
+
+
+
+'''
+---
 ### Create a model using Keras
+
+The ```tf.keras.Sequential``` model is a linear stack of layers.  
+Its constructor takes a list of layer instances, in this case, two Dense layers with 10 nodes each,
+and an output layer with 3 nodes representing our label predictions.  
+
+The first layer's ```input_shape``` parameter corresponds to the number of features from the dataset, 
+and is required.
 '''
 
 st.code('''model = tf.keras.Sequential([
@@ -145,7 +171,7 @@ model = tf.keras.Sequential([
 '''
 The activation function determines the output shape of each node in the layer. 
 The ideal number of hidden layers and neurons depends on the problem and the dataset.
-> **Rule of thumb**: increasing the number of hidden layers and neurons creates a more powerful model, 
+> **Rule of thumb**. Increasing the number of hidden layers and neurons creates a more powerful model, 
 > which requires more data to train effectively.
 '''
 
@@ -185,12 +211,51 @@ crossentropy_loss = loss(model, features, labels)
 st.write(f"Loss test:  {crossentropy_loss:.2f}")
 
 
+'''
+```tf.GradientTape``` calculates gradients used to optimise the model.
+'''
+
+st.code('''
+def grad(model, inputs, targets):
+  with tf.GradientTape() as tape:
+    loss_value = loss(model, inputs, targets)
+  return loss_value, tape.gradient(loss_value, model.trainable_variables)
+  ''')
+
+def grad(model, inputs, targets):
+  with tf.GradientTape() as tape:
+    loss_value = loss(model, inputs, targets)
+  return loss_value, tape.gradient(loss_value, model.trainable_variables)
 
 
+'''
+---
+### Create an optimiser  
 
+An *optimizer* applies the computed gradients to the model's variables to minimize the ```loss``` function.   
 
+> **Gradient descent.** The loss function can be thinked of as a curved surface.   
+We want to find its lowest point by walking around.
 
+TensorFlow ```tf.train.GradientDescentOptimizer```
+implements the stochastic gradient descent (SGD) algorithm.
 
+The *hyperparameter* ```learning_rate``` sets the step size to take for each iteration down the hill.
+'''
+#image_url2 = 'https://cs231n.github.io/assets/nn3/opt1.gif'
+#st.image(image_url2, use_column_width=True)
+
+optimizer = tf.keras.optimizers.Adam(learning_rate=0.01)
+
+loss_value, gradients = grad(model, features, labels)
+
+print("Step: {}, Initial Loss: {}".format(optimizer.iterations.numpy(),
+                                          loss_value.numpy()))
+
+optimizer.apply_gradients(zip(gradients, model.trainable_variables))
+
+print("Step: {},         Loss: {}".format(optimizer.iterations.numpy(),
+                                          loss(model, features, labels).numpy()))
 
 
 
