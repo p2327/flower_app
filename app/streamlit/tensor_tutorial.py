@@ -1,5 +1,8 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 
+# this works 
+from utils import *
+
 import os
 import matplotlib.pyplot as plt
 import tensorflow as tf
@@ -109,10 +112,7 @@ st.code('''def pack_features_vector(features, labels):
   return features, labels''')
 
 # takes values from a list of tensors and creates a combined tensor at the specified dimension
-def pack_features_vector(features, labels):
-  """Pack the features into a single array."""
-  features = tf.stack(list(features.values()), axis=1)
-  return features, labels
+### goes here: pack features
 
 # pack the features of each (features,label) pair into the training datase
 train_dataset = train_dataset.map(pack_features_vector)
