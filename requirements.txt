@@ -1,3 +1,4 @@
 streamlit
 ipython
 azle
+jupyter_kernel_gateway

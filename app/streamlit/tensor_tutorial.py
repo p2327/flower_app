@@ -1,4 +1,8 @@
-from __future__ import absolute_import, division, print_function, unicode_literals
+'''
+Rendering the TensorFlow Iris tutorial as a Streamlit app.
+'''
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals)
 
 from utils import pack_features_vector, loss, grad
 
@@ -8,8 +12,7 @@ import tensorflow as tf
 
 import streamlit as st
 import pandas as pd
-import time
-import numpy as np
+
 
 st.title("TensorFlow Tutorial")
 
@@ -557,8 +560,8 @@ i.e examples that contain a feature but no label.
 '''
 st.code('''
 predict_dataset = tf.convert_to_tensor([
-    [5.1, 3.3, 1.7, 0.5,],
-    [5.9, 3.0, 4.2, 1.5,],
+    [5.1, 3.3, 1.7, 0.5],
+    [5.9, 3.0, 4.2, 1.5],
     [6.9, 3.1, 5.4, 2.1]
 ])
 
@@ -571,8 +574,8 @@ for i, logits in enumerate(predictions):
     print("Example {} prediction: {} ({:4.1f}%)".format(i, name, 100*p))
 ''')
 predict_dataset = tf.convert_to_tensor([
-    [5.1, 3.3, 1.7, 0.5,],
-    [5.9, 3.0, 4.2, 1.5,],
+    [5.1, 3.3, 1.7, 0.5],
+    [5.9, 3.0, 4.2, 1.5],
     [6.9, 3.1, 5.4, 2.1]
 ])
 
@@ -583,14 +586,3 @@ for i, logits in enumerate(predictions):
     p = tf.nn.softmax(logits)[class_idx]
     name = class_names[class_idx]
     st.write(f"Example {i} prediction: {name} ({100*p:4.1f}%)")
-
-
-
-
-
-
-
-
-
-
-#st.button("Re-run")
