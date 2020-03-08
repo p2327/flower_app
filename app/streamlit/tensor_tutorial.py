@@ -274,7 +274,7 @@ predictions = model(features)
 predictions
 
 '''
-Using ```softmax``` converts the logit to the predicted probability of 
+Using ```softmax``` converts the logits to the predicted probability of 
 each example in the batch to be of one of the classes.
 '''
 st.code('''
@@ -506,7 +506,7 @@ st.pyplot()
 '''
 ---
 ### Evaluate the model on the test set
-Load the test data in a a ```tf.dataset```:
+Load the test data in a ```tf.dataset```:
 '''
 st.code('''
 test_dataset = tf.data.experimental.make_csv_dataset(

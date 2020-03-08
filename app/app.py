@@ -6,12 +6,12 @@ The application contains 3 parts:
     2. Allow users to challenge tha AI
     3. Show the current scoreboard
 
-The plan is to write a data pipelaine that:
+The plan is to write a data pipeline that:
     - Gathers and validates Iris flower data
     - Trains and validates a model capable of classifying Iris flowers
     - Deploys that model as a service for front-end consumption
 '''
-#from utils_app import show_random_iris
+# from utils_app import show_random_iris
 import random
 import numpy as np
 import pandas as pd
@@ -69,9 +69,10 @@ def show_random_iris():
 # GET /get_random_flower
 random_result = show_random_iris()
 res = {
-    "name" : random_result[0],
-    "url" : random_result[1],
-    "data" : {"keys" : list(random_result[2]), "values" : random_result[2].iloc[0].tolist()}
+    "name": random_result[0],
+    "url": random_result[1],
+    "data": {"keys" : list(random_result[2]), "values": random_result[2].iloc[0].tolist()}
 }
 
-st.write(json.dumps(res))
+# st.write(json.dumps(res))
+print(json.dumps(res))
