@@ -42,7 +42,7 @@ function show_fetched_results(data) {
     })
     barchart_wrapper_args = {
         "data": data.data,
-        "right_margin": 200,
+        "right_margin": 600,
         "bar_color": "blue"
     }
     az.remove_element("barchart", 1)
@@ -52,10 +52,10 @@ function show_fetched_results(data) {
         "wrapper_arguments": barchart_wrapper_args
     })
     az.style_d3_visual('barchart', 1, {
-        "width": "90%",
+        "width": "100%",
         "height": "100%",
-        "margin-top": "200px",
-        "margin-left": "0px"
+        "margin-top": "300px",
+        "margin-left": "-80px"
     })
     az.rotate_element('barchart', 1, '0')
 }
@@ -71,14 +71,14 @@ function show_fetched_results_2(data) {
     })
     az.style_image("iris_image_2", 1, {
         "align": "center",
-        "width": "200px",
-        "height": "200px",
+        "width": "315px",
+        "height": "315px",
         "border": "1px solid black",
         "border-radius": "4px"
     })
     barchart_wrapper_args_2 = {
         "data": data.data,
-        "right_margin": 600,
+        "right_margin": 700,
         "bar_color": "salmon"
     }
     az.remove_element("barchart_2", 1)
@@ -91,7 +91,7 @@ function show_fetched_results_2(data) {
         "width": "100%",
         "height": "100%",
         "margin-top": "100px",
-        "margin-left": "-10px"
+        "margin-left": "20px"
     })
     az.rotate_element('barchart_2', 1, '0')
     az.store_data('ask_button', 1, {
@@ -171,7 +171,7 @@ function calculate_score() {
         "wrapper_arguments": barchart_wrapper_args_3
     })
     az.style_d3_visual('barchart_3', 1, {
-        "width": "90%",
+        "width": "100%",
         "height": "100%",
         "margin-top": "90px",
         "margin-left": "10px"

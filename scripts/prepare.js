@@ -1,8 +1,8 @@
 az.load_font('Raleway')
 az.style_body({
     "font-family": "Raleway",
-    "min-width": "800px",
-    "max-width": "800px",
+    "min-width": "1300px",
+    "max-width": "1300px",
     "align": "center"
 })
 az.add_top_button({

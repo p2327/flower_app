@@ -6,9 +6,10 @@ az.call_once_satisfied({
             "text": "SCOREBOARD"
         })
         az.style_text('score_title', 1, {
-            "color": "white",
+            "color": "orange",
             "align": "center",
-            "font-size": "24px"
+            "text-shadow" : "1px 1px 1px black",
+            "font-size": "18px"
         })
     }
 })
